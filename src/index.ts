@@ -5,6 +5,7 @@ import { getPromptResponse } from './modules/chat';
 import { login } from './modules/login';
 import { getBrowser } from './utils/browser';
 import { CSVWriterDataFormat, writeCSVFile } from './utils/csvWriter';
+import { htmlToMarkdown } from './utils/format';
 import { logger } from './utils/logger';
 
 (async () => {
@@ -49,7 +50,7 @@ import { logger } from './utils/logger';
         {
           id: 'response' + (index + 1),
           title: 'Response ' + (index + 1),
-          value: item.response
+          value: htmlToMarkdown(item.response)
         }
       ])
       .flat();

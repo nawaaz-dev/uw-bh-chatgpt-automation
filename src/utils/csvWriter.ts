@@ -47,14 +47,12 @@ export async function writeCSVFile(
         id: curr.id,
         title: curr.title
       });
-      acc.values.push({
-        [curr.id]: curr.value
-      });
+      acc.values[curr.id] = curr.value;
       return acc;
     },
-    { header: [], values: [] } as {
+    { header: [], values: {} } as {
       header: { id: string; title: string }[];
-      values: Record<string, string>[];
+      values: Record<string, string>;
     }
   );
 
@@ -73,7 +71,7 @@ export async function writeCSVFile(
 
   try {
     // Save the reply response to the CSV file
-    await csvWriter.writeRecords(values);
+    await csvWriter.writeRecords([values]);
   } catch (error) {
     logger.error('Failed to write to CSV file:', error);
     return { error: Errors.File.CSVWriteFailed };
