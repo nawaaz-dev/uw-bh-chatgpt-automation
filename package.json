@@ -7,7 +7,7 @@
   "author": "nawaaz-dev <me@nawaaz.dev>",
   "license": "MIT",
   "scripts": {
-    "start": "ts-node src/index.ts",
+    "start": "tsx src/index.ts",
     "build": "tsc",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
@@ -31,7 +31,7 @@
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "husky": "^9.1.7",
     "prettier": "^3.5.3",
-    "ts-node": "^10.9.2",
+    "tsx": "^4.19.3",
     "typescript": "^5.8.2"
   }
 }
