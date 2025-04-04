@@ -4,7 +4,7 @@ import { Errors } from '@/config/errors';
 import { ErrorReturn } from '@/types/generic';
 import { logger } from '@/utils/logger';
 
-import { dismissCookieConsent } from '../cookie-consent';
+import { dismissCookieConsent } from '../consent/cookie-consent';
 import loginConfig from './login.config';
 import { emailSubmit } from './modules/email-submit';
 import { emailVerify } from './modules/email-verify';
