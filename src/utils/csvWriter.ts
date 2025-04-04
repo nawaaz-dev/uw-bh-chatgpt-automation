@@ -58,7 +58,7 @@ export async function writeCSVFile({
   try {
     // Instantiate the CSV writer
     csvWriter = createObjectCsvWriter({
-      path: file.csv.response(`responses_${Date.now()}.csv`),
+      path: file.csv.response(`responses_${Date.now()}`),
       header: [
         { id: 'prompt1', title: 'Prompt #1' },
         { id: 'chatResponse1', title: 'Response #1' },

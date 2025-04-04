@@ -5,6 +5,8 @@ import { ErrorReturn } from '@/types/generic';
 import { getUserInput } from '@/utils/cli';
 import { classPartial } from '@/utils/selectors';
 
+import { dismissCookieConsent } from '../layovers/cookie-consent';
+
 /**
  * Logs into ChatGPT using the provided credentials.
  * Assumes you're using email/password login (not Google or Microsoft SSO).
@@ -37,6 +39,15 @@ export async function login(
     console.log('🔐 Navigating to ChatGPT login page...');
 
     await page.goto('https://chat.openai.com/auth/login', { waitUntil: 'networkidle2' });
+
+    const { error: cookieConsentError, data: cookieConsentData } = await dismissCookieConsent(page);
+    if (cookieConsentError) throw new Error(cookieConsentError);
+
+    if (cookieConsentData?.encountered) {
+      console.log('✅ Cookie consent banner dismissed');
+    } else {
+      console.log('✅ No cookie consent banner encountered');
+    }
 
     // Step 1: Click "Log in" button
     try {

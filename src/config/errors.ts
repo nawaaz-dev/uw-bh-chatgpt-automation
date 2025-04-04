@@ -30,4 +30,8 @@ export namespace Errors {
     CSVCreateFailed = 'CSVCreateFailed',
     CSVWriteFailed = 'CSVWriteFailed'
   }
+
+  export enum Generic {
+    CookieLayover = 'CookieLayover'
+  }
 }
