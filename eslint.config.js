@@ -24,36 +24,11 @@ export default defineConfig({
     'import/order': 'off',
     'prettier/prettier': 'warn',
     'no-unused-vars': 'off',
-    '@typescript-eslint/no-unused-vars': ['warn']
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      { "argsIgnorePattern": "^_" }
+    ]
+  
   }
 });
 
-// export default {
-//   ignores: ['dist', 'node_modules'],
-//   files: ['**/*.ts'],
-//   languageOptions: {
-//     parser: '@typescript-eslint/parser',
-//     parserOptions: {
-//       ecmaVersion: 2020,
-//       sourceType: 'module',
-//       ecmaFeatures: {
-//         modules: true
-//       }
-//     },
-
-//   },
-//   plugins: {
-//     '@typescript-eslint': tsEslint,
-//     import: eslintPluginImport,
-//     'simple-import-sort': eslintPluginSimpleImportSort,
-//     prettier: eslintPluginPrettier
-//   },
-//   rules: {
-//     'simple-import-sort/imports': 'error',
-//     'simple-import-sort/exports': 'error',
-//     'import/order': 'off',
-//     'prettier/prettier': 'warn',
-//     'no-unused-vars': 'off',
-//     '@typescript-eslint/no-unused-vars': ['warn']
-//   }
-// };

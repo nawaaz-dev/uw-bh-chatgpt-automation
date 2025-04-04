@@ -14,9 +14,13 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@types/turndown": "^5.0.5",
     "csv-writer": "^1.6.0",
     "dotenv": "^16.4.7",
     "puppeteer": "^24.6.0",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
+    "turndown": "^7.2.0",
     "yargs": "^17.7.2"
   },
   "devDependencies": {
