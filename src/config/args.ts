@@ -38,21 +38,27 @@ export const getRunArgs = (): ArgsConfig => {
     .option('prompt1', {
       type: 'string',
       describe: 'Initial prompt to ChatGPT',
-      demandOption: true
+      demandOption: !process.env.PROMPT1
     })
     .option('prompt2', {
       type: 'string',
       describe: 'Follow-up reply to ChatGPT',
-      demandOption: true
+      demandOption: !process.env.PROMPT2
     })
     .help()
     .alias('help', 'h')
     .parseSync();
 
+  if (![argv.email, argv.password, argv.prompt1, argv.prompt2].every((e) => e?.trim())) {
+    throw new Error(
+      'Required arguments cannot be empty. Use the [-h] flag to know about the arguments'
+    );
+  }
+
   return {
     email: argv.email ?? '',
     password: argv.password ?? '',
-    prompt1: argv.prompt1,
-    prompt2: argv.prompt2
+    prompt1: argv.prompt1 ?? '',
+    prompt2: argv.prompt2 ?? ''
   };
 };
