@@ -21,7 +21,7 @@ export interface ArgsConfig {
   reply: string;
 }
 
-export const getArgs = (): ArgsConfig => {
+export const getRunArgs = (): ArgsConfig => {
   const argv = yargs(hideBin(process.argv))
     .option('email', {
       type: 'string',

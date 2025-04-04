@@ -26,5 +26,8 @@ export namespace Errors {
     ChatResponeTimeout = 'ChatResponseTimeout'
   }
 
-  export enum Chat {}
+  export enum File {
+    CSVCreateFailed = 'CSVCreateFailed',
+    CSVWriteFailed = 'CSVWriteFailed'
+  }
 }

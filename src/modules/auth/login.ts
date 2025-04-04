@@ -212,19 +212,14 @@ export async function login(
                   { timeout: 3000 }
                 );
 
-                if (!errorMessageEl) {
-                  console.log('✅ Verification code accepted');
-                  // Wait for the page to redirect to the chat page
-                  console.log('🔄 Redirecting to chat page...');
-                  break;
-                } else {
-                  const errorMessage = await page.evaluate((el) => el.textContent, errorMessageEl);
+                const errorMessage = await page.evaluate(
+                  (el) => (el as HTMLDivElement).textContent,
+                  errorMessageEl
+                );
 
-                  console.error('❌ Failed.\nPossible verification code error: ', errorMessage);
-
-                  console.log('If you want to end this process, please press Ctrl + C.\n');
-                  continue;
-                }
+                console.error('❌ Failed.\nPossible verification code error: ', errorMessage);
+                console.log('If you want to end this process, please press Ctrl + C.\n');
+                continue;
               } catch (error) {
                 console.error(error);
                 // No error message found, so we assume the verification code was accepted
@@ -264,13 +259,6 @@ export async function login(
         };
       }
     }
-
-    return {
-      error: null,
-      data: {
-        authenticated: true
-      }
-    };
   } catch (error) {
     console.error(error);
     return {

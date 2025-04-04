@@ -1,11 +1,13 @@
 import { Page } from 'puppeteer';
 
-import { login } from './auth/login';
-import { getArgs } from './config/args';
+import { getRunArgs } from './config/args';
+import { login } from './modules/auth/login';
+import { runConversation } from './modules/chat/conversation';
 import { getBrowser } from './utils/browser';
+import { writeCSVFile } from './utils/csvWriter';
 
 (async () => {
-  const { email, password } = getArgs();
+  const { email, password, prompt, reply } = getRunArgs();
 
   // Launch browser
   const browser = await getBrowser();
@@ -20,15 +22,26 @@ import { getBrowser } from './utils/browser';
       console.error('❌ Something went wrong during login');
       return;
     }
-    // ... Do something with the authenticated page
-  } catch (err) {
-    console.error('❌ Operation failed:', err);
+
+    const { error: chatError, data: chatData } = await runConversation(page, prompt, reply);
+    if (chatError) throw new Error(chatError);
+
+    if (!chatData) {
+      console.error('❌ Something went wrong during the generation of the responses.');
+      return;
+    }
+
+    const { error: writeError } = await writeCSVFile(chatData);
+
+    if (writeError) throw new Error(writeError);
+    console.log('✅ All operations completed successfully.');
+  } catch (error) {
+    console.error('❌ Failed to complete operations:', error);
   } finally {
-    // Don't close the browser yet if you want to test post-login actions
-    // await browser.close();
-    // browser.close().catch((err) => {
-    //   console.error('❌ Failed to close browser:', err);
-    // });
-    // process.exit(1);
+    browser.close().catch((err) => {
+      console.error('❌ Failed to close browser:', err);
+    });
+
+    process.exit(0);
   }
 })();
