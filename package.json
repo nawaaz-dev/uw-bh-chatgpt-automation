@@ -1,0 +1,24 @@
+{
+  "name": "uw-bh-chatgpt-automation",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@nawaaz.dev:nawaaz-dev/uw-bh-chatgpt-automation.git",
+  "author": "nawaaz-dev <me@nawaaz.dev>",
+  "license": "MIT",
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "csv-writer": "^1.6.0",
+    "dotenv": "^16.4.7",
+    "puppeteer": "^24.6.0",
+    "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "@types/yargs": "^17.0.33",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
+  }
+}
