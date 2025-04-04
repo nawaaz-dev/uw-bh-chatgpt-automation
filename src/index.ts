@@ -1,3 +1,3 @@
-import { login } from "./auth/login";
+import { login } from './auth/login';
 
-console.log(login(null));
+console.log(login());
