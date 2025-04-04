@@ -32,6 +32,11 @@ export namespace Errors {
   }
 
   export enum Generic {
-    CookieLayover = 'CookieLayover'
+    CookieLayover = 'CookieLayover',
+    UnexpectedError = 'UnexpectedError'
+  }
+
+  export enum Text {
+    NoText = 'NoText'
   }
 }

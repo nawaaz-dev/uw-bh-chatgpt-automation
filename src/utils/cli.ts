@@ -8,7 +8,10 @@ export function getUserInput(prompt: string): Promise<string> {
   });
 
   return new Promise((resolve) => {
-    rl.question(prompt, (answer) => {
+    const decoratedPrompt = `----------------------------\n${
+      prompt
+    }:\n----------------------------\n> `;
+    rl.question(decoratedPrompt, (answer) => {
       rl.close();
       resolve(answer);
     });

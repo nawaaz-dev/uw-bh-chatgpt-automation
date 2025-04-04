@@ -1,0 +1,1 @@
+export { getPromptResponse } from './chat';

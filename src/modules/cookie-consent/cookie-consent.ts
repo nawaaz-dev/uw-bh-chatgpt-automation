@@ -2,6 +2,7 @@ import { Page } from 'puppeteer';
 
 import { Errors } from '@/config/errors';
 import { ErrorReturn } from '@/types/generic';
+import { logger } from '@/utils/logger';
 
 const text = {
   cookieRejectButton: 'Reject non-essential'
@@ -33,16 +34,16 @@ export async function dismissCookieConsent(page: Page): Promise<
     }, text.cookieRejectButton);
 
     if (encountered) {
-      console.log('✅ Cookie consent banner dismissed');
+      logger.success('Cookie consent banner dismissed');
       // Timeout to allow the page to process the click
       await new Promise((resolve) => setTimeout(resolve, 1000));
       return { error: null, data: { encountered: true } };
     } else {
-      console.log('❌ Cookie consent banner not found');
+      logger.info('Cookie consent banner not found');
       return { error: null, data: { encountered: false } };
     }
   } catch (error) {
-    console.error('❌ Failed to dismiss the cookie consent banner:', error);
-    return { error: Errors.Generic.CookieLayover, data: null };
+    logger.error('Failed to dismiss the cookie consent banner:', error);
+    return { error: Errors.Generic.CookieLayover };
   }
 }

@@ -17,8 +17,8 @@ dotenv.config();
 export interface ArgsConfig {
   email: string;
   password: string;
-  prompt: string;
-  reply: string;
+  prompt1: string;
+  prompt2: string;
 }
 
 export const getRunArgs = (): ArgsConfig => {
@@ -35,12 +35,12 @@ export const getRunArgs = (): ArgsConfig => {
       default: process.env.PASSWORD,
       demandOption: !process.env.PASSWORD
     })
-    .option('prompt', {
+    .option('prompt1', {
       type: 'string',
       describe: 'Initial prompt to ChatGPT',
       demandOption: true
     })
-    .option('reply', {
+    .option('prompt2', {
       type: 'string',
       describe: 'Follow-up reply to ChatGPT',
       demandOption: true
@@ -52,7 +52,7 @@ export const getRunArgs = (): ArgsConfig => {
   return {
     email: argv.email ?? '',
     password: argv.password ?? '',
-    prompt: argv.prompt,
-    reply: argv.reply
+    prompt1: argv.prompt1,
+    prompt2: argv.prompt2
   };
 };
