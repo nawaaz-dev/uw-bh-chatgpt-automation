@@ -1,3 +1,3 @@
-import { getArgs } from "./config/args";
+import { login } from './auth/login';
 
-console.log(getArgs());
+console.log(login());

@@ -1,3 +1,3 @@
-export function login(page: unknown) {
+export function login() {
   return null;
 }
